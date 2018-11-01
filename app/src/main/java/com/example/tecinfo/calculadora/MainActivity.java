@@ -190,9 +190,43 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                              "Digite o numero", Toast.LENGTH_LONG).show();
 
+                } else {
+
+                    //operacao = "=";
+                    valor2 = Double.parseDouble(displayConta.getText().toString());
+                    displayConta.setText("");
+
+                    String resultado = calcular(valor1,valor2,operacao);
+
+                    displayResultado.setText(resultado);
                 }
             }
         });
+
+    }
+
+    public String calcular(Double valor1, Double valor2, String operacao){
+
+        Double resultado = 0.0;
+
+        if (operacao.equals("+")){
+            resultado = valor1+valor2;
+        } else if (operacao.equals("-")){
+            resultado = valor1-valor2;
+        } else if (operacao.equals("*")){
+            resultado = valor1*valor2;
+        } else if (operacao.equals("/")){
+            if (valor2 == 0){
+                Toast.makeText(getApplicationContext(),
+                        "não é possivel dividir por 0",Toast.LENGTH_LONG).show();
+
+            } else {
+                resultado = valor1 / valor2;
+            }
+        }
+
+        return resultado.toString();
+
 
     }
 }
